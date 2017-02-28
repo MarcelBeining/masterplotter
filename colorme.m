@@ -92,8 +92,10 @@ if numel(ugroupdef) == 1 && isnumeric(ugroupdef{1})
         end
         col = tcol;
     else
-        col = stdcolor(1:ugroupdef{1});
-        colgroupdef = stdcoln(1:ugroupdef{1});
+        reps = repmat(1:min(numel(stdcolor),ugroupdef{1}),1,ceil(ugroupdef{1}/numel(stdcolor)));
+        reps = reps(1:min(numel(reps),ugroupdef{1}));
+        col = stdcolor(reps);
+        colgroupdef = stdcoln(reps);
     end
 elseif ~isempty(ugroupdef)
     col = cell(numel(ugroupdef),1);
