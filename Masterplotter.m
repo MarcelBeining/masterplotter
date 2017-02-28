@@ -650,6 +650,7 @@ for f=1:numel(fields)  % go through all fields
         newbarwidth = ostruct.barwidth;
     end
     FontResizer(axs,ostruct.FontSize,ostruct.FontType)
+    BetterTicks(axs)
     if ostruct.resize && isfield(ostruct,'figureheight')
         if ~isempty(strfind(thisplot,'bar')) 
             FigureResizer(ostruct.figureheight,ostruct.figurewidth,[barwidth newbarwidth],ostruct)
