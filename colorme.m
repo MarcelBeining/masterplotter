@@ -102,7 +102,7 @@ elseif ~isempty(ugroupdef)
     for c = 1:numel(ugroupdef)
         ind = strcmpi(ugroupdef{c},stdcoln);     % take only first appearance of colordef...
         if sum(ind) == 0
-            display(sprintf('Warning, color %s not found, color vec is black at that entry\n',ugroupdef{c}));
+            fprintf('Warning, color %s not found, color vec is black at that entry\n',ugroupdef{c});
             col{c} = [0 0 0];
         else
             col(c) = stdcolor(ind);
