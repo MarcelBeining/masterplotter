@@ -26,7 +26,7 @@ elseif isvector(varargin{1}) && numel(varargin{1}) == 3 && ~ischar(varargin{1})
     return
 else
     ugroupdef = varargin;
-    if ~isempty(strfind(ugroupdef{end},'-'))
+    if ischar(ugroupdef{end}) && ~isempty(strfind(ugroupdef{end},'-'))
         options = ugroupdef{end};
         ugroupdef = ugroupdef(1:end-1);
     else
