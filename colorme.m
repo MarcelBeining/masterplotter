@@ -43,12 +43,13 @@ end
 if ischar(ugroupdef)
     ugroupdef = {ugroupdef};
 end
-% stdcolor = repmat({[0.6 1 0.6],[0.2 1 0.2],[0 0.7 0],[0 0.4 0],[0 0.2 0],[1 0 0],[0 0 1],[0 0 0],[1 1 0],[1 0 1],[0 1 1],[0.5 0 0],[0.3 0 0],[0 0 0.5],[0.5 0.5 0],[0.5 0 0.5],[0 0.5 0.5]},1,40);
-% stdcoln = repmat({'light green','bright green','green','dim green','dark green','red','blue','black','yellow','pink','turquois','dim red','dark red','dark blue','dark yellow','violett','dark turqoius'},1,40);
-
-stdcolor = {[0 0 0],[1 0 0],[0 0 0.9],[0 0.6 0],[1 0.7 0],[0.5 0 1],[0 1 1],[0.5 0.5 0.5],[1 0 1],[0.2 0.6 1],[0.6 0 0],[0 1 0],[0 0.2 0],[0 0.5 0.5],[0.4 0 0],[1 1 0],[0.5 1 0.7],[1 0.5 0.5],[0.9 0.4 0],[0 1 1],[0 0 0.6],[1 1 1],[0.05 0.05 0.05]};
-stdcoln = {'black','red','blue','dim green','yellow','violett','turquois','gray','pink','light blue','dim red','green','dark green','dark turqoius','dark red','bright yellow','bright green','bright red','orange','cyan','dim blue','white','bblack'};
-
+if ~isempty(strfind(options,'-k'))
+    stdcolor = {[1 1 1],[1 0 0],[0 0 0.9],[0 0.6 0],[1 0.7 0],[0.5 0 1],[0 1 1],[0.5 0.5 0.5],[1 0 1],[0.2 0.6 1],[0.6 0 0],[0 1 0],[0 0.2 0],[0 0.5 0.5],[0.4 0 0],[1 1 0],[0.5 1 0.7],[1 0.5 0.5],[0.9 0.4 0],[0 1 1],[0 0 0.6],[0 0 0],[0.05 0.05 0.05]};
+    stdcoln = {'white','red','blue','dim green','yellow','violett','turquois','gray','pink','light blue','dim red','green','dark green','dark turqoius','dark red','bright yellow','bright green','bright red','orange','cyan','dim blue','black','bblack'};
+else
+    stdcolor = {[0 0 0],[1 0 0],[0 0 0.9],[0 0.6 0],[1 0.7 0],[0.5 0 1],[0 1 1],[0.5 0.5 0.5],[1 0 1],[0.2 0.6 1],[0.6 0 0],[0 1 0],[0 0.2 0],[0 0.5 0.5],[0.4 0 0],[1 1 0],[0.5 1 0.7],[1 0.5 0.5],[0.9 0.4 0],[0 1 1],[0 0 0.6],[1 1 1],[0.05 0.05 0.05]};
+    stdcoln = {'black','red','blue','dim green','yellow','violett','turquois','gray','pink','light blue','dim red','green','dark green','dark turqoius','dark red','bright yellow','bright green','bright red','orange','cyan','dim blue','white','bblack'};
+end
 if numel(ugroupdef) == 1 && isnumeric(ugroupdef{1})
     if ~isempty(strfind(options,'-gr'))
         col = zeros(ugroupdef{1},3);
@@ -92,7 +93,7 @@ if numel(ugroupdef) == 1 && isnumeric(ugroupdef{1})
         end
         col = tcol;
     else
-        reps = repmat(1:min(numel(stdcolor),ugroupdef{1}),1,ceil(ugroupdef{1}/numel(stdcolor)));
+        reps = repmat(1:min(numel(stdcolor)-2,ugroupdef{1}),1,ceil(ugroupdef{1}/(numel(stdcolor)-2)));
         reps = reps(1:min(numel(reps),ugroupdef{1}));
         col = stdcolor(reps);
         colgroupdef = stdcoln(reps);

@@ -6,7 +6,7 @@ if ~isfield(gstruct,'col')
     gstruct.col = colorme(size(data,2));
 end
 if ~isfield(gstruct,'group')
-    gstruct.group = 1:size(data,2);
+    gstruct.group = {1:size(data,2)};
 end
 if ~isfield(gstruct,'ugroupdef')
     gstruct.ugroupdef = {sprintfc('Group %d\n',1:size(data,2))};

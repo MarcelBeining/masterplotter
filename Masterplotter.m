@@ -580,9 +580,10 @@ for f=1:numel(fields)  % go through all fields
             if numel(gstruct.group) == 1
                 
             else
+                lflag = true;
                 set(gca,'XTickLabel',gstruct.ugroupdef{end})
             end
-            lflag = true;
+            
         end
         if ~isempty(params{4})
             xlabel(params{4})
